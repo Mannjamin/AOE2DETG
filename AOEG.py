@@ -1,19 +1,12 @@
 import random
-
 numTeams = '0'
 numMutators = '0'
-
 civilisations = ['Aztecs', 'Berbers', 'Britons', 'Bulgarians', 'Celts', 'Chinese', 'Cumans', 'Ethiopians', 'Franks', 'Goths', 'Huns', 'Incas', 'Indians', 'Italians', 'Japanese', 'Khmer',
-                'Koreans', 'Lithuanians', 'Magyars', 'Malay', 'Malians', 'Mayans', 'Mongols', 'Persians', 'Portuguese', 'Saracens', 'Slavs', 'Spanish', 'Tatars', 'Tuetons', 'Turks', 'Vietnamese', 'Vikings']
+                 'Koreans', 'Lithuanians', 'Magyars', 'Malay', 'Malians', 'Mayans', 'Mongols', 'Persians', 'Portuguese', 'Saracens', 'Slavs', 'Spanish', 'Tatars', 'Tuetons', 'Turks', 'Vietnamese', 'Vikings']
 mutations = ['No Infrantry', 'Focus Infantry', 'No Archers (incl Cavalry)', 'Focus Archers', 'No Cavalry (incl Camels and Elephants)', 'Focus Cavalry',
-            'No Siege Weapons (inc bombard cannons)', 'Focus Siege Weapons', 'No Blacksmith Upgrades', 'No Trade (incl carts/caravans)', 'No Monastery', 'No Castles', 'No Monks']
-
+             'No Siege Weapons (inc bombard cannons)', 'Focus Siege Weapons', 'No Blacksmith Upgrades', 'No Trade (incl carts/caravans)', 'No Monastery', 'No Castles', 'No Monks']
 chosenCivilisations = []
-
-# List of List
 chosenMutations = []
-
-# List of List
 newChosenMutations = []
 
 # Get Number of Teams
@@ -44,26 +37,28 @@ def setNumMutators():
         print('No input found, try again.')
         setNumMutators()
 
-# Print User Chosen Parametrs
-def printParams():
+# Print User Inputs
+def getInputs():
     print('-------------------------------------------------------------------------')
     # Number of Teams:
     print('Number of Teams Selected: ' + str(numTeams))
     # Number of Mutators:
     print('Number of Mutators: ' + str(numMutators))
 
+# Collect list of Random Civilisations
 def getCivilisations():
     global numTeams, chosenCivilisations
-    for x in range(int(numTeams)):
+    for x in range(int(numTeams)):  # pylint: disable=unused-variable
         # Get Random Civilisation:
         chosenCiv = random.choice(civilisations)
         chosenCivilisations.append(chosenCiv)
 
+# Collect list of Random Mutations per Civilisation
 def getMutations():
     global chosenCivilisations, chosenMutations, mutations
-    for x in range(len(chosenCivilisations)):
+    for x in range(len(chosenCivilisations)):  # pylint: disable=unused-variable
         teamMutations = []
-        for y in range(int(numMutators)):
+        for y in range(int(numMutators)):  # pylint: disable=unused-variable
             randMute = random.choice(mutations)
             if randMute in teamMutations:
                 while randMute in teamMutations:
@@ -77,7 +72,7 @@ def getMutations():
 # Check if certain factions are viable
 def viabilityCheck():
     for x in range(len(chosenCivilisations)):
-        # Check Goths have Infantry Units. 
+        # Check Goths have Infantry Units.
         civIndex = x
         if str(chosenCivilisations[x]) == 'Goths':
             civIndex = x
@@ -158,7 +153,7 @@ def viabilityCheck():
             replaceMutation(civIndex, mutIndex, 'Focus Siege Weapons')
             viabilityCheck()
 
-
+# Replace Unwanted Mutations
 def replaceMutation(civIndex, mutIndex, unwantedMutator):
     global chosenMutations
     randMute = unwantedMutator
@@ -169,11 +164,12 @@ def replaceMutation(civIndex, mutIndex, unwantedMutator):
     randMute = random.choice(mutations)
     chosenMutations[civIndex][mutIndex] = randMute
 
-# Generate User Chosen Parameters
-def getParams():
+# Print out Results
+def getResults():
     print("-------------------------------------------------------------------------")
     for x in range(len(chosenCivilisations)):
-        print('Team ' + str(x) + ', Civilisation: ' + str(chosenCivilisations[x]) + ', Mutators: ' + str(chosenMutations[x]))
+        print('Team ' + str(x) + ', Civilisation: ' +
+              str(chosenCivilisations[x]) + ', Mutators: ' + str(chosenMutations[x]))
     print("-------------------------------------------------------------------------")
 
 # Execute Code
@@ -182,8 +178,7 @@ print("Mann's Age of Empires Civilisation Generator")
 
 setNumTeams()
 setNumMutators()
-printParams()
+getInputs()
 getCivilisations()
 getMutations()
-getParams()
-
+getResults()
