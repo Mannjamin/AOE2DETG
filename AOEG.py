@@ -1,7 +1,6 @@
 import random
 
 numTeams = '0'
-boolMutators = 'N'
 numMutators = '0'
 
 civilisations = ["Aztecs", "Berbers", "Britons", "Bulgarians", "Celts", "Chinese", "Cumans", "Ethiopians", "Franks", "Goths", "Huns", "Incas", "Indians", "Italians", "Japanese", "Khmer",
@@ -23,19 +22,6 @@ def setNumTeams():
         print("No input found, try again.")
         setNumTeams()
 
-# Determine whether to use Mutators or not
-def setMutators():
-    global boolMutators
-    boolMutators = input("Enter Y or N for Mutators: ")
-    if boolMutators == 'Y':
-        setNumMutators()
-    elif boolMutators == 'N':
-        print("No Mutators")
-    else:
-        print("Y or N, try again.")
-        setMutators()
-
-
 # Get Number of Mutators wanted.
 def setNumMutators():
     global numMutators
@@ -52,22 +38,21 @@ def setNumMutators():
 
 # Print User Chosen Parametrs
 def printParams():
+    print("-------------------------------------------------------------------------")
     # Number of Teams:
     print("Number of Teams Selected: " + str(numTeams))
-    # Mutators:
-    print("Mutators: " + str(boolMutators))
-    if boolMutators == 'Y':
-        # Number of Mutators:
-        print("Number of Mutators: " + str(numMutators))
+    # Number of Mutators:
+    print("Number of Mutators: " + str(numMutators))
 
 # Generate User Chosen Parameters
 def getParams():
+    print("-------------------------------------------------------------------------")
     # Output chosen parameters
     for x in range(int(numTeams)):
         # Get Random Civilisation:
         chosenCiv = random.choice(civilisations)
         # Get Mutators
-        if boolMutators == "Y" or "y":
+        if int(numMutators) > 0:
             chosenMut = []
             for y in range(int(numMutators)):
                 # Second Check In
@@ -87,17 +72,18 @@ def getParams():
                             break
                     chosenMut.append(randMute)
                     break 
-        if boolMutators == 'Y':
+        if int(numMutators) > 0:
             print("Team " + str(x+1) + " [Civilisation: " + str(chosenCiv) + "] [Mutators: " + str(chosenMut) +"]")
         else:
             print("Team " + str(x+1) + " [Civilisation: " + str(chosenCiv) +"]")
-
+    print("-------------------------------------------------------------------------")
 
 # Execute Code
+print("-------------------------------------------------------------------------")
 print("Mann's Age of Empires Civilisation Generator")
 
 setNumTeams()
-setMutators()
+setNumMutators()
 printParams()
 getParams()
 
