@@ -10,4 +10,4 @@
 5.  World Domination... 
 
 ### Example:
-![Example Image](https://github.com/Mannjamin/AOE2DETG/example.png?raw=true)
+![Example Image](https://github.com/Mannjamin/AOE2DETG/blob/master/example.png?raw=true)
