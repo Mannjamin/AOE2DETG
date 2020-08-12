@@ -1,4 +1,4 @@
-# Age of Empires 2 DE Team Name Generator
+# Age of Empires 2 DE Team Civilisation Generator
 
 ## Random Civilisation / Mutators Generator for Age of Empires DE
 
