@@ -39,7 +39,16 @@ def setMutators():
 # Get Number of Mutators wanted.
 def setNumMutators():
     global numMutators
-    numMutators = input("Enter number of mutators: ")
+    try:
+        numMutators = input("Enter number of mutators: ")
+        try:
+            numMutators = int(numMutators)
+        except ValueError:
+            print("Input is not a number, try again.")
+            setNumMutators()
+    except SyntaxError:
+        print("No input found, try again.")
+        setNumMutators()
 
 # Print User Chosen Parametrs
 def printParams():
