@@ -8,3 +8,6 @@
 3.  Write 'python AOEG.py'
 4.  Fill in the details.
 5.  World Domination... 
+
+### Example:
+![Example Image](https://github.com/Mannjamin/AOE2DETG/example.png?raw=true)
